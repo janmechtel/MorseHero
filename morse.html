@@ -1,0 +1,119 @@
+﻿<HTML>
+	<head>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	</head>
+	<body>
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="js/bootstrap.min.js"></script>
+		<script language="javascript">
+			<!--
+
+			//Morse code converter- By Luke Watson (luke@lukewatson.f2s.com)
+			//Script featured on JK (http://javascriptkit.com)
+			//Visit http://javascriptkit.com for this script and more
+
+			var charCodes=new Array(36);
+			charCodes["a"]=". _";
+			charCodes["b"]="_ . . .";
+			charCodes["c"]="_ . _ .";
+			charCodes["d"]="_ . .";
+			charCodes["e"]=".";
+			charCodes["f"]=". . _ .";
+			charCodes["g"]="_ _ .";
+			charCodes["h"]=". . . .";
+			charCodes["i"]=". .";
+			charCodes["j"]=". _ _ _";
+			charCodes["k"]="_ . _";
+			charCodes["l"]=". _ . .";
+			charCodes["m"]="_ _";
+			charCodes["n"]="_ .";
+			charCodes["o"]="_ _ _";
+			charCodes["p"]=". _ _ .";
+			charCodes["q"]="_ _ . _";
+			charCodes["r"]=". _ .";
+			charCodes["s"]=". . .";
+			charCodes["t"]="_";
+			charCodes["u"]=". . _";
+			charCodes["v"]=". . . _";
+			charCodes["w"]=". _ _";
+			charCodes["x"]="_ . . _";
+			charCodes["y"]="_ . _ _";
+			charCodes["z"]="_ _ . .";
+			charCodes["1"]=". _ _ _ _";
+			charCodes["2"]=". . _ _ _";
+			charCodes["3"]=". . . _ _";
+			charCodes["4"]=". . . . _";
+			charCodes["5"]=". . . . .";
+			charCodes["6"]="_ . . . .";
+			charCodes["7"]="_ _ . . .";
+			charCodes["8"]="_ _ _ . .";
+			charCodes["9"]="_ _ _ _ .";
+			charCodes["0"]="_ _ _ _ _";
+
+			var downtime = null;
+			var max = 200;
+
+			function up() {
+				var difference = new Date() - downtime;
+				if (difference < max) {
+					type(".");
+				}
+				else {
+					type("_");
+				}
+			}
+
+			function type(s) {
+				if (document.morsecode.encoded.value.substring(0,1) == s) {
+					document.morsecode.encoded.value = document.morsecode.encoded.value.substring(1).trim();
+				}
+			}
+
+			function down() {
+				downtime = new Date();
+			}
+
+			function encode() {
+				document.morsecode.chars.value=document.morsecode.chars.value.toLowerCase();
+				document.morsecode.encoded.value="";
+				var chars=document.morsecode.chars.value.split("");
+
+				for (a=0; a<chars.length; a++) {
+					document.morsecode.encoded.value+=charCodes[chars[a]]+"    ";
+				}
+			}
+
+			$( document ).ready(function() {
+				encode();
+			});
+			// -->
+		</SCRIPT>
+		<div class="container">
+			<form name="morsecode" role="form">
+				<div class="form-group">
+					<label for="original">Type a message:</label>
+					<input id="original" class="form-control" TYPE="TEXT" NAME="chars" value="Hello">
+				</div>
+
+				<div class="form-group">
+					<input type="button" class="btn btn-default" VALUE="Encode" onClick="encode();">
+				</div>
+
+				<div class="form-group">
+					<label for="encoded">Tap this message:</label>
+					<input id="encoded" name="encoded" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<input type="button" id="tapper" class="btn btn-primary" VALUE="Morse Code Tapper" onMouseUp="up()" onMouseDown="down();">
+				</div>
+			</FORM>
+		</div>
+</body>
+
+</html>
